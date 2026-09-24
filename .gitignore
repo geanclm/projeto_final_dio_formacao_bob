@@ -1,0 +1,53 @@
+﻿# =============================================================
+# Segurança — arquivos que NUNCA devem ser publicados no GitHub
+# =============================================================
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+*.env
+
+# Arquivos de credenciais / chaves
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+secrets.json
+credentials.json
+service-account*.json
+*_secret*
+*_token*
+api_keys.*
+github_token*
+
+# Arquivos de configuração com senhas
+config.local.*
+settings.local.*
+
+# Sistemas operacionais
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+# Node.js (caso venha a usar)
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Python (caso venha a usar)
+__pycache__/
+*.py[cod]
+venv/
+.venv/
