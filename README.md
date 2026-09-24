@@ -47,6 +47,17 @@ O bootcamp é encerrado com a entrega de um projeto publicado no GitHub — este
 
 ---
 
+## Boas Práticas de Segurança Aplicadas
+
+Este projeto adota as seguintes práticas para proteção de credenciais:
+
+- **`.gitignore`** configurado para bloquear arquivos `.env`, chaves e tokens
+- **`.env.example`** como template documentado sem valores reais
+- **Token de acesso** armazenado via Windows Credential Manager (`credential.helper=manager-core`), nunca embutido em URLs
+- **Credenciais nunca versionadas** — nenhum segredo é exposto no histórico do Git
+
+---
+
 ## Autor
 
 Desenvolvido como projeto de conclusão de bootcamp por **geanclm**.
