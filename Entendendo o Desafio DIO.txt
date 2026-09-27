@@ -1,0 +1,75 @@
+Entendendo o Desafio DIO
+
+Entendendo o Desafio
+Agora é a sua hora de praticar, aprender fazendo e construir um projeto para o seu portfólio!
+
+Neste desafio, você vai desenvolver o Geo-Explorer, um projeto que usa o IBM Bob como apoio para criar, testar e documentar uma solução completa.
+
+A proposta é criar uma experiência de exploração de trilhas de aprendizagem. A pessoa usuária poderá consultar uma trilha, receber um desafio de código e gerar um certificado fictício.
+
+Nas aulas, o expert desenvolve cada etapa junto com você. Acompanhe o passo a passo, revise o que foi criado pelo Bob e adapte o projeto com suas próprias ideias.
+
+O Que Criar
+O projeto deve reunir três comandos principais:
+
+Trilha: Apresenta um plano de estudos de acordo com a tecnologia escolhida;
+Desafio: Gera um desafio de código conforme a tecnologia e o nível informado;
+Certificado: Cria um certificado fictício para uma trilha concluída.
+Esses comandos usam uma base com trilhas fictícias, criada especialmente para o projeto.
+
+Como Desenvolver
+O projeto é construído em etapas simples:
+
+Crie o Repositório: Comece com um novo repositório no GitHub e configure o projeto localmente.
+Organize o Projeto: Crie pastas para os dados, comandos, documentação, testes e demais recursos.
+Monte a Base de Trilhas: Crie um arquivo com informações fictícias sobre tecnologias, níveis e módulos.
+Crie os Comandos: Implemente os comandos de trilha, desafio e certificado.
+Teste o Funcionamento: Verifique se os comandos geram os resultados esperados e crie testes automatizados.
+Documente e Publique: Explique como o projeto funciona e envie a versão final para o GitHub.
+O projeto também apresenta a criação de um Servidor MCP. Pense nele como uma forma de permitir que outras ferramentas acessem os recursos do Geo-Explorer. Siga as aulas e a documentação criada durante o desenvolvimento para implementar essa etapa.
+
+Evolua Com Suas Ideias
+Depois de concluir o fluxo principal, você pode personalizar o projeto.
+
+Adicionar novas trilhas;
+Criar outros tipos de desafios;
+Melhorar o modelo do certificado;
+Adicionar novos comandos;
+Melhorar os testes;
+Criar uma interface para o projeto;
+Adaptar a ideia para outro tema.
+Uma melhoria pequena, funcionando e bem explicada já representa uma ótima evolução.
+
+Uma Ajuda Durante O Caminho
+Se encontrar alguma dificuldade, você pode usar o DIO Agent para entender um conceito, organizar o próximo passo ou revisar sua documentação.
+
+Peça ajuda de forma simples:
+
+Estou desenvolvendo o Geo-Explorer.
+
+Repositório do meu projeto:
+<cole aqui o link>
+
+Estou trabalhando nesta etapa:
+<explique a etapa ou a dificuldade>
+
+Ajude-me a entender o próximo passo sem entregar a solução completa.
+O Que Entregar
+Publique sua versão do projeto em um repositório no GitHub.
+
+No README.md, explique:
+
+O que é o Geo-Explorer;
+Como executar o projeto;
+Como usar os comandos;
+Como executar os testes;
+Quais melhorias você realizou;
+O que você aprendeu durante o desafio.
+Antes de publicar, revise os arquivos criados pelo agente. Nunca envie senhas, tokens ou outras informações privadas para o GitHub.
+
+Resultado Esperado
+Ao final, você terá um projeto de portfólio com dados, comandos, testes, documentação e integração com outras ferramentas.
+
+Mais importante do que gerar muitos arquivos é entender o que foi construído, testar o resultado e conseguir explicar suas escolhas.
+
+Bons estudos e bom projeto 🚀

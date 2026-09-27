@@ -65,3 +65,6 @@ Desenvolvido como projeto de conclusão de bootcamp por **geanclm**.
 ---
 
 *Início do projeto: 24/09/2026*
+
+---
+Conclusão do curso: 27/09/2026
