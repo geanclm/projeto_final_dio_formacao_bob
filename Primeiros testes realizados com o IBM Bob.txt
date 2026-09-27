@@ -1,0 +1,86 @@
+Testes realizados com o IBM Bob
+Primeiras impressões
+by geanclm on 18/8/2026 at 9h30
+
+
+1 - melhorar o texto para publicação no SHE360 da Mercado Livre;
+---
+PROMPT
+
+2 - criar uma página com autenticação via conta google;
+---
+PROMPT
+
+3 - interpretar uma imagem e resumir o contexto do cenário apresentado;
+---
+Acesse o arquivo "Gemini_Generated_Image_vtue00vtue00vtue.png" e faça uma breve descrição da leitura
+dessa imagem, identifique qual modelo de IA gerou essa imagem, aponte possíveis erros no contexto da imagem, e isso inclui tabuleiro de xadrez,
+elementos da imagem, personagens presentes, elementos perto e longe. Aponte ainda um insight significativo que vale a pensa comentar acerca da  leitura
+dessa imagem. Salve todo o comentário em um arquivo final chamado leitura_imagem_nomeModeloUtilizado.txt
+
+
+4 - resumir o conteúdo de um arquivo de áudio de um podcast;
+---
+Acesse o arquivo "podcast_indicadores.m4a" e faça um breve resumo acerca do conteúdo desse áudio. Identifique a fonte geradora do áudio,
+e aponte um insight significativo que vale a pensa comentar. Salve o comentário final em um arquivo chamado leitura_audio.txt
+
+
+5 - Qual o principal insight que pode ser comentado com base no arquivo df_indicadores_11_08_2026_11h55m10s92.md;
+---
+
+6 - Qual o rank atual da FIFA em agosto de 2026 para o futebol masculino? Considere a data atual para listar os Top 5 da FIFA.
+Salve a lista organizada em um arquivo final chamado rank_fifa.txt
+---
+
+
+7 - Se for possível, navegue na web e traga o nome e modelo do último lançamento de notebook da Lenovo.
+---
+Tavily API - serviço de busca acessível via requisições
+
+
+8 - Gerar  uma imagem com o enquadramento de um carro com um casal em alto estrada indo para um final de semana.
+PROMPT - modelo não gera imagem. Logo, o prompt foi adaptado para um desafio de arte ASCII estruturada.
+PROMPT
+
+9 - Com base no contexto atual mundial, descreva, de forma objetiva em no máximo 10 linhas, qual a tendência de vida para a humanidade daqui a 50 anos
+PROMPT
+
+10 - Qual o principal insight pode ser comentado a partir do gráfico "panorama_macro.png"
+PROMPT
+
+11 - Transcrição e resumo coerente de vídeo Youtube com base no link fornecido
+PROMPT:
+Acesse o vídeo YouTube no link https://youtu.be/NGxIIjB8ER0?list=PLUT5IDAYxD5w e gere um breve resumo acerca dos
+principais ensinamentos e mais tópicos mais relevantes para alavancar carreira profissional junto ao relacionamento
+com pessoas. Salve o texto em um arquivo final chamado resumo_video_audiobook.txt
+
+12 - Geração de dashboard com html css js com base em conjunto de dados xlsx compartilhado na pasta;
+PROMPT 1
+PROMPT 2
+
+13 - Prompt Previsão de Jogos - Loteca
+Pesquise na web e retorne, de forma organiza em uma tabela,
+a programação do Concurso 1268 da Loteca da Caixa (29/08/2026, Sábado)
+Período de apostas: 26/08/2026 até as 15h do dia 29/08/2026
+Realização dos jogos de futebol: 29/08/2026 a 30/08/2026
+---
+Retorne a tabela de forma organizada com a previsão de resultado para cada jogo da Loteca Concurso 1268 pesquisada
+Salve o texto em um arquivo final chamado previsao_jogos_loteca_1268.txt
+
+
+14 - Prompt Dashboard Indicadores
+PROMPT
+
+
+15 - Análise exploratória automatizada com geração de código e visualizações
+---
+Com base no arquivo df_indicadores_11_08_2026_11h55m10s92.md (já usado no item 5),
+realize uma análise exploratória completa dos dados: identifique padrões, anomalias,
+correlações e tendências relevantes. Gere automaticamente o código Python necessário
+para produzir ao menos 3 visualizações distintas (ex: série temporal, dispersão, heatmap
+de correlação), salve os scripts em arquivos .py separados e compile um relatório final
+em HTML com os principais achados, os gráficos embutidos e recomendações de negócio.
+Salve o relatório em um arquivo chamado relatorio_analise_exploratoria.html
+
+16 - Analisar pastas com versões de chess e criar pastas com implementação melhorada
+em html, css e js

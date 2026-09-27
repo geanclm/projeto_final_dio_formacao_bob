@@ -1,0 +1,56 @@
+{
+  "name": "dio-explorer",
+  "version": "1.0.0",
+  "description": "Assistente de carreira para estudantes da DIO com Slash Commands",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "tsc --noEmit",
+    "test": "jest --coverage",
+    "test:unit": "jest --testPathPattern=tests/unit --coverage",
+    "test:integration": "jest --testPathPattern=tests/integration --coverage",
+    "test:ci": "jest --coverage --coverageReporters=text --coverageReporters=json-summary"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "rootDir": ".",
+    "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "commands/**/*.ts",
+      "!src/index.ts",
+      "!**/*.d.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 70,
+        "functions": 70,
+        "branches": 60,
+        "statements": 70
+      }
+    },
+    "coverageReporters": ["text", "text-summary", "json-summary"],
+    "moduleNameMapper": {
+      "^../data/(.*)$": "<rootDir>/data/$1"
+    }
+  },
+  "keywords": [
+    "DIO",
+    "career",
+    "slash-commands",
+    "education"
+  ],
+  "author": "DIO Explorer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^30.5.2",
+    "ts-jest": "^29.4.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}

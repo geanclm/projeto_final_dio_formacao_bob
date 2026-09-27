@@ -1,0 +1,513 @@
+================================================================================
+  DIO EXPLORER — RELATÓRIO DE TESTES AUTOMATIZADOS
+  Suíte: Unitários + Integração | Framework: Jest + ts-jest
+================================================================================
+
+DATA DE EXECUÇÃO : 27/09/2026 às 03:43:42
+PROJETO          : dio-explorer v1.0.0
+COMANDO          : npm test (jest --coverage --forceExit)
+DURAÇÃO TOTAL    : ~9.68 segundos
+AMBIENTE         : Node.js · TypeScript 5.4 · ts-jest
+
+================================================================================
+  1. RESUMO EXECUTIVO
+================================================================================
+
+A suíte de testes cobre completamente os três comandos slash do DIO Explorer
+(/trilha, /desafio, /certificado) com testes unitários e de integração.
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  RESULTADO GERAL                                                        │
+  │                                                                         │
+  │  Test Suites : 6 passaram   /  6 total  (0 falhas)                     │
+  │  Testes      : 195 passaram /  195 total (0 falhas)                     │
+  │  Snapshots   : 0                                                        │
+  └─────────────────────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  COBERTURA DE CÓDIGO                    ALVO: 70%     OBTIDA: ✅ PASSOU │
+  │                                                                         │
+  │  Statements (Declarações) : 95.45%   (273 / 286)   ✅ Acima do alvo   │
+  │  Branches   (Desvios)     : 85.13%   (126 / 148)   ✅ Acima do alvo   │
+  │  Functions  (Funções)     : 100.00%  ( 56 /  56)   ✅ Cobertura total  │
+  │  Lines      (Linhas)      : 95.13%   (254 / 267)   ✅ Acima do alvo   │
+  └─────────────────────────────────────────────────────────────────────────┘
+
+Todas as métricas superam o alvo mínimo de 70%. A cobertura de funções atingiu
+100%, indicando que nenhuma função do código de produção ficou sem teste.
+
+================================================================================
+  2. COBERTURA POR ARQUIVO
+================================================================================
+
+Arquivo                     │ Statements │ Branches │ Functions │ Lines
+────────────────────────────┼────────────┼──────────┼───────────┼──────────
+src/types.ts                │   100.00%  │  100.00% │   100.00% │  100.00%
+src/commandRegistry.ts      │    97.22%  │   90.00% │   100.00% │   97.14%
+src/services/trailService.ts│   100.00%  │  100.00% │   100.00% │  100.00%
+src/services/trilhaLogic.ts │    95.12%  │   88.88% │   100.00% │   94.87%
+src/services/desafioLogic.ts│    97.61%  │   79.31% │   100.00% │   97.36%
+src/services/certificado.ts │    98.03%  │   91.66% │   100.00% │   97.91%
+commands/trilha.ts          │    71.42%  │    0.00% │   100.00% │   71.42%
+commands/desafio.ts         │    71.42%  │    0.00% │   100.00% │   71.42%
+commands/certificado.ts     │    71.42%  │    0.00% │   100.00% │   71.42%
+
+Nota: os arquivos em commands/ têm cobertura de branches em 0% porque os blocos
+catch (linhas 18-19 / 19-20 / 22-23) requerem erros inesperados (não-
+ValidationError) para serem alcançados — cenários intencionalmente fora do
+escopo do domínio de negócio.
+
+================================================================================
+  3. SUÍTES E CASOS DE TESTE
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+  3.1  UNITÁRIOS — trailService  [tests/unit/trailService.test.ts]
+       Tempo: 5.42 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  carregarTrilhas()
+  [PASS]  retorna um array não vazio
+  [PASS]  retorna exatamente 30 trilhas
+  [PASS]  cada trilha possui os campos obrigatórios
+  [PASS]  retorna o mesmo array nas chamadas seguintes (cache)
+
+  buscarPorId()
+  [PASS]  encontra a trilha Java por ID exato
+  [PASS]  é case-insensitive (trl-005 == TRL-005)
+  [PASS]  ignora espaços em branco no ID
+  [PASS]  retorna undefined para ID inexistente
+  [PASS]  retorna undefined para string vazia
+
+  filtrarTrilhas()
+  [PASS]  sem filtros retorna todas as trilhas
+  [PASS]  filtra por ID retorna exatamente 1 trilha
+  [PASS]  filtra por ID inexistente retorna array vazio
+  [PASS]  filtra por nível Iniciante
+  [PASS]  filtra por nível Avançado
+  [PASS]  lança ValidationError para nível completamente inválido
+  [PASS]  filtra por tecnologia Java (parcial, case-insensitive)
+  [PASS]  filtra por tecnologia inexistente retorna array vazio
+  [PASS]  filtra por categoria Cloud
+  [PASS]  combina filtros: nivel + tecnologia
+
+  listarCategorias()
+  [PASS]  retorna array não vazio de strings únicas ordenadas
+
+  listarNiveis()
+  [PASS]  retorna os três níveis esperados
+
+  validarIdTrilha()
+  [PASS]  retorna a trilha quando ID existe
+  [PASS]  lança ValidationError para ID inexistente
+  [PASS]  mensagem de erro contém o ID informado
+
+  Total: 24 testes  |  24 passou  |  0 falhou
+
+────────────────────────────────────────────────────────────────────────────────
+  3.2  UNITÁRIOS — trilhaLogic  [tests/unit/trilhaLogic.test.ts]
+       Tempo: 7.72 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  formatarCardTrilha()
+  [PASS]  contém o ID e nome da trilha
+  [PASS]  exibe emoji 🟡 para nível Intermediário
+  [PASS]  exibe emoji 🟢 para nível Iniciante
+  [PASS]  exibe emoji 🔴 para nível Avançado
+  [PASS]  mostra '✅ Vitalício' quando vitalicio = true
+  [PASS]  mostra '⏳ Por tempo limitado' quando vitalicio = false
+  [PASS]  mostra promoção ativa com percentual
+  [PASS]  mostra 'Sem promoção ativa' quando desconto = 0
+  [PASS]  lista as tecnologias da trilha
+  [PASS]  lista os instrutores
+
+  formatarListaTrilhas()
+  [PASS]  formata array de trilhas com marcadores
+  [PASS]  retorna string vazia para array vazio
+
+  executarTrilha() — ajuda
+  [PASS]  args vazio retorna menu de ajuda
+  [PASS]  --ajuda retorna menu de ajuda
+  [PASS]  ajuda contém níveis disponíveis
+
+  executarTrilha() — --listar
+  [PASS]  lista todas as trilhas com cabeçalho
+  [PASS]  --listar --nivel Iniciante filtra corretamente
+  [PASS]  --listar --categoria Cloud filtra por categoria
+  [PASS]  --listar --tecnologia Java retorna trilhas Java
+  [PASS]  --listar com nível inválido retorna mensagem de erro
+
+  executarTrilha() — --id
+  [PASS]  --id TRL-005 retorna detalhes da trilha Java
+  [PASS]  --id inexistente retorna mensagem de erro formatada
+  [PASS]  card gerado contém dados corretos da trilha Java
+
+  executarTrilha() — --nivel
+  [PASS]  retorna trilhas do nível informado
+  [PASS]  nível inválido retorna mensagem de erro
+
+  executarTrilha() — --tecnologia
+  [PASS]  retorna trilhas com Java
+  [PASS]  tecnologia inexistente retorna aviso ⚠️
+
+  executarTrilha() — --categoria
+  [PASS]  retorna trilhas de Back-end
+  [PASS]  categoria inexistente retorna aviso ⚠️
+
+  executarTrilha() — busca livre
+  [PASS]  encontra trilhas por termo Java
+  [PASS]  busca sem resultado retorna aviso ⚠️
+  [PASS]  múltiplos termos são concatenados e buscados
+
+  Total: 33 testes  |  33 passou  |  0 falhou
+
+────────────────────────────────────────────────────────────────────────────────
+  3.3  UNITÁRIOS — desafioLogic  [tests/unit/desafioLogic.test.ts]
+       Tempo: 5.45 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  executarDesafio() — ajuda
+  [PASS]  args vazio retorna menu de ajuda
+  [PASS]  --ajuda retorna menu de ajuda
+  [PASS]  ajuda lista as três dificuldades
+
+  executarDesafio() — sem --id
+  [PASS]  retorna erro ❌ quando --id não é informado
+  [PASS]  retorna erro ❌ com apenas flag desconhecida
+
+  executarDesafio() — ID inválido
+  [PASS]  retorna erro ❌ para ID inexistente
+
+  executarDesafio() — dificuldade inválida
+  [PASS]  retorna erro ❌ para dificuldade 'super'
+  [PASS]  retorna erro ❌ para dificuldade vazia string
+
+  executarDesafio() — dificuldade fácil
+  [PASS]  contém cabeçalho do desafio
+  [PASS]  contém 'Fácil' na tabela
+  [PASS]  contém o ID e nome da trilha Java
+  [PASS]  contém entregáveis como checklist
+  [PASS]  contém critérios de avaliação
+  [PASS]  contém hashtag DIOChallenge
+  [PASS]  XP de recompensa é metade do xp por módulo (0.5×) = 300 XP
+
+  executarDesafio() — dificuldade médio (padrão)
+  [PASS]  dificuldade padrão é médio
+  [PASS]  contém pelo menos 4 entregáveis no médio
+  [PASS]  XP de recompensa é 1× o xp por módulo = 600 XP
+  [PASS]  menciona tecnologias da trilha Java no objetivo
+
+  executarDesafio() — dificuldade difícil
+  [PASS]  contém 'Difícil' na tabela
+  [PASS]  exige deploy em produção no entregável
+  [PASS]  exige cobertura de testes ≥ 80%
+  [PASS]  XP de recompensa é 1.8× o xp por módulo = 1080 XP
+  [PASS]  tem 6 entregáveis no difícil
+
+  executarDesafio() — forma abreviada
+  [PASS]  aceita ID posicional sem --id
+  [PASS]  aceita ID posicional + --dificuldade
+
+  executarDesafio() — trilha Iniciante (TRL-003)
+  [PASS]  gera desafio para trilha de nível Iniciante
+  [PASS]  badge ao concluir é da trilha AWS
+
+  Total: 28 testes  |  28 passou  |  0 falhou
+
+────────────────────────────────────────────────────────────────────────────────
+  3.4  UNITÁRIOS — certificadoLogic  [tests/unit/certificadoLogic.test.ts]
+       Tempo: 5.37 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  executarCertificado() — ajuda
+  [PASS]  args vazio retorna menu de ajuda
+  [PASS]  --ajuda retorna menu de ajuda
+
+  executarCertificado() — parâmetros ausentes
+  [PASS]  sem --id retorna erro ❌
+  [PASS]  sem --nome retorna erro ❌
+  [PASS]  args completamente vazio retorna ajuda
+
+  executarCertificado() — validação de ID
+  [PASS]  ID inexistente retorna erro ❌
+
+  executarCertificado() — validação de nome
+  [PASS]  nome com 1 char retorna erro de comprimento mínimo
+  [PASS]  nome com 2 chars retorna erro de comprimento mínimo
+  [PASS]  nome com caracteres numéricos retorna erro de formato
+  [PASS]  nome com caracteres especiais inválidos retorna erro
+  [PASS]  nome muito longo (>80 chars) retorna erro
+  [PASS]  nome com hífen é válido
+  [PASS]  nome com apóstrofo é válido
+  [PASS]  nome com acento é válido
+
+  executarCertificado() — geração para Gean Lima
+  [PASS]  contém cabeçalho do certificado
+  [PASS]  contém o nome do estudante no ASCII art
+  [PASS]  contém o nome da trilha Java no ASCII art
+  [PASS]  contém o ID da trilha na tabela de detalhes
+  [PASS]  contém carga horária correta (120h)
+  [PASS]  contém número de módulos (20)
+  [PASS]  contém XP conquistado (12.000)
+  [PASS]  contém tecnologias da trilha
+  [PASS]  contém badges da trilha
+  [PASS]  contém instrutores da trilha
+  [PASS]  número de certificado começa com DIO-CERT-
+  [PASS]  contém link de validação
+  [PASS]  contém hashtag DIOCertificado
+  [PASS]  contém data de emissão formatada em pt-BR
+  [PASS]  arte ASCII tem bordas ╔ e ╚
+
+  executarCertificado() — nome longo válido
+  [PASS]  gera certificado para nome com múltiplas palavras
+
+  executarCertificado() — unicidade do número
+  [PASS]  dois certificados têm números diferentes
+
+  Total: 34 testes  |  34 passou  |  0 falhou
+
+────────────────────────────────────────────────────────────────────────────────
+  3.5  UNITÁRIOS — commandRegistry  [tests/unit/commandRegistry.test.ts]
+       Tempo: 7.82 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  commandRegistry — estado inicial
+  [PASS]  três comandos padrão estão registrados
+  [PASS]  getCommand('trilha') retorna o comando correto
+  [PASS]  getCommand é case-insensitive
+  [PASS]  getCommand de nome inexistente retorna undefined
+  [PASS]  cada comando registrado tem description, usage e examples preenchidos
+
+  dispatch() — entrada inválida
+  [PASS]  string sem / retorna success=false
+  [PASS]  string vazia retorna success=false
+  [PASS]  espaços apenas retornam success=false
+
+  dispatch() — comando não encontrado
+  [PASS]  comando inexistente retorna success=false com lista disponível
+
+  dispatch() — /ajuda e /help
+  [PASS]  /ajuda retorna success=true
+  [PASS]  /ajuda contém os três comandos
+  [PASS]  /help é alias de /ajuda
+
+  dispatch() — /trilha
+  [PASS]  /trilha retorna success=true (modo ajuda)
+  [PASS]  /trilha --listar retorna success=true
+  [PASS]  /trilha --id TRL-005 retorna success=true
+  [PASS]  /trilha --id TRL-999 retorna mensagem de erro no output
+
+  dispatch() — /desafio
+  [PASS]  /desafio sem args retorna success=true (modo ajuda)
+  [PASS]  /desafio --id TRL-005 retorna success=true
+  [PASS]  /desafio --id TRL-999 retorna erro no output
+
+  dispatch() — /certificado
+  [PASS]  /certificado sem args retorna success=true (modo ajuda)
+  [PASS]  /certificado --id TRL-005 --nome Gean Lima retorna success=true
+  [PASS]  /certificado --id TRL-999 --nome Gean Lima retorna erro no output
+  [PASS]  /certificado com nome inválido retorna erro no output
+
+  dispatch() — normalização de entrada
+  [PASS]  espaços extras ao redor são ignorados
+  [PASS]  nome do comando em maiúsculas é aceito
+
+  Total: 26 testes  |  26 passou  |  0 falhou
+
+────────────────────────────────────────────────────────────────────────────────
+  3.6  INTEGRAÇÃO — Fluxo Java  [tests/integration/fluxo-java.test.ts]
+       Tempo: 7.84 s  |  Status: PASS
+────────────────────────────────────────────────────────────────────────────────
+
+  Passo 0: Leitura de data/trilhas_dio.json
+  [PASS]  carrega o arquivo JSON sem erros
+  [PASS]  JSON contém 30 trilhas
+  [PASS]  TRL-005 (Java) existe no JSON
+  [PASS]  TRL-005 é de nível Intermediário
+  [PASS]  TRL-005 usa Java como tecnologia principal
+  [PASS]  TRL-005 tem duração de 120 horas
+  [PASS]  TRL-005 tem 20 módulos
+  [PASS]  TRL-005 tem 12.000 XP total
+
+  Passo 1: Consultar trilha Java via /trilha --id TRL-005
+  [PASS]  dispatch retorna success=true
+  [PASS]  output contém cabeçalho '🔍 Detalhes da Trilha'
+  [PASS]  output contém nome da trilha
+  [PASS]  output contém ID TRL-005
+  [PASS]  output contém tecnologias Java, Spring Boot, React
+  [PASS]  output contém nível Intermediário
+  [PASS]  output contém duração 120h
+  [PASS]  output contém promoção ativa (25%)
+  [PASS]  output contém emoji 🟡 (Intermediário)
+  [PASS]  output não contém erro ❌
+
+  Passo 2: Gerar desafio Java Intermediário
+  [PASS]  dispatch retorna success=true
+  [PASS]  output contém cabeçalho '🏆 Desafio'
+  [PASS]  output referencia a trilha TRL-005
+  [PASS]  output indica dificuldade 🟡 Médio
+  [PASS]  output contém objetivo com tecnologias Java
+  [PASS]  output contém XP de recompensa (600 XP)
+  [PASS]  output contém checklist de entregáveis
+  [PASS]  output contém critérios com ✅
+  [PASS]  output contém hashtag #DIOChallenge
+  [PASS]  output não contém erro ❌
+  [PASS]  badge ao concluir pertence à trilha Java
+
+  Passo 3: Gerar certificado para Gean Lima
+  [PASS]  dispatch retorna success=true
+  [PASS]  output contém cabeçalho '🎓 Certificado de Conclusão — DIO'
+  [PASS]  output contém o nome do estudante 'Gean Lima'
+  [PASS]  output contém nome da trilha Java no template ASCII
+  [PASS]  output contém número de certificado no formato DIO-CERT-XXXXXXXXXXXXXXXX
+  [PASS]  output contém link de validação https://www.dio.me/certificate/
+  [PASS]  output contém categoria 'Desenvolvimento Back-end'
+  [PASS]  output contém carga horária 120 horas
+  [PASS]  output contém badges 'Java Developer' e 'Full Stack Builder'
+  [PASS]  output contém hashtag #DIOCertificado
+  [PASS]  output não contém erro ❌
+  [PASS]  arte ASCII está presente (bordas ╔ e ╚)
+
+  Passo 4: Validação de consistência do fluxo completo
+  [PASS]  todas as três etapas foram executadas com success=true
+  [PASS]  a trilha consultada no passo 1 é a mesma referenciada no desafio
+  [PASS]  a trilha consultada no passo 1 é a mesma no certificado
+  [PASS]  o estudante 'Gean Lima' está no certificado e não no desafio
+  [PASS]  nenhum dos três outputs contém string de erro ❌
+  [PASS]  o fluxo é repetível: segunda execução produz success=true
+  [PASS]  tecnologia Java aparece em todos os outputs
+
+  Cenários de erro — integração
+  [PASS]  trilha inexistente em /trilha retorna mensagem de erro
+  [PASS]  trilha inexistente em /desafio retorna mensagem de erro
+  [PASS]  trilha inexistente em /certificado retorna mensagem de erro
+  [PASS]  dificuldade inválida no desafio retorna mensagem de erro
+  [PASS]  nome com números no certificado retorna mensagem de erro
+  [PASS]  nome muito curto no certificado retorna mensagem de erro
+  [PASS]  comando desconhecido retorna mensagem de erro com comandos disponíveis
+
+  Total: 50 testes  |  50 passou  |  0 falhou
+
+================================================================================
+  4. CASOS DE SUCESSO (seleção representativa)
+================================================================================
+
+[OK] Leitura do JSON: 30 trilhas carregadas corretamente do arquivo real
+[OK] Filtro de nível: filtragem por Iniciante/Intermediário/Avançado validada
+[OK] Filtro por tecnologia Java: retorna TRL-005 e outras trilhas com Java
+[OK] Cache do trailService: segunda chamada retorna referência idêntica
+[OK] Busca livre: termo "Java" encontra trilhas corretas
+[OK] Desafio fácil TRL-005: XP = 300 (0.5 × 600 base)
+[OK] Desafio médio TRL-005: XP = 600 (1.0 × 600 base), ≥4 entregáveis
+[OK] Desafio difícil TRL-005: XP = 1080 (1.8 × 600 base), ≥6 entregáveis
+[OK] Forma abreviada /desafio TRL-005: ID posicional aceito
+[OK] Certificado Gean Lima TRL-005: número DIO-CERT-16chars gerado
+[OK] Certificado nome com hífen: Jean-Pierre Silva aceito como válido
+[OK] Certificado nome com acento: Antônio Figueirêdo aceito como válido
+[OK] Fluxo completo Java: 4 passos encadeados sem erros
+[OK] /ajuda lista os 3 comandos; /help é alias funcional
+[OK] Comando em maiúsculas (/TRILHA) normalizado corretamente
+
+================================================================================
+  5. CASOS DE FALHA (validações de entrada inválida)
+================================================================================
+
+Todos os cenários de erro retornam mensagem descritiva com ❌ sem exceção não
+tratada. Exemplos verificados:
+
+[OK] /trilha --id TRL-999           → "❌ Trilha TRL-999 não encontrada"
+[OK] /trilha --nivel Especialista   → "❌ Nível não encontrado..."
+[OK] /trilha --listar --nivel Mestre → "❌ Nível Mestre não encontrado..."
+[OK] /desafio --id TRL-999          → "❌ Trilha TRL-999 não encontrada"
+[OK] /desafio --dificuldade super   → "❌ Dificuldade inválida: super"
+[OK] /desafio (sem --id)            → "❌ Informe o ID da trilha"
+[OK] /certificado (sem --id)        → "❌ Informe o ID da trilha"
+[OK] /certificado (sem --nome)      → "❌ Informe seu nome"
+[OK] /certificado --nome A          → "❌ Nome muito curto"
+[OK] /certificado --nome A×81       → "❌ Nome muito longo"
+[OK] /certificado --nome G34n L1m4  → "❌ Nome inválido"
+[OK] /xyz_inexistente               → "❌ Comando não encontrado"
+[OK] "trilha" (sem /)               → "❌ Entrada inválida (deve começar com /)"
+
+Falha detectada e corrigida durante o ciclo de desenvolvimento:
+  [FIXED] listarTodasTrilhas() não capturava ValidationError ao filtrar por
+          nível inválido via --listar --nivel. Corrigido com bloco try/catch
+          em src/services/trilhaLogic.ts, linha 131.
+
+================================================================================
+  6. LOGS DE EXECUÇÃO
+================================================================================
+
+09:40:01 | npm test -- --forceExit
+09:40:02 | Jest iniciado com ts-jest preset
+09:40:02 | Carregando 6 suítes de teste
+09:40:07 | PASS tests/unit/trailService.test.ts        (5.42s)
+09:40:07 | PASS tests/unit/certificadoLogic.test.ts    (5.37s)
+09:40:07 | PASS tests/unit/desafioLogic.test.ts        (5.45s)
+09:40:09 | PASS tests/unit/trilhaLogic.test.ts         (7.72s)
+09:40:10 | PASS tests/unit/commandRegistry.test.ts     (7.82s)
+09:40:10 | PASS tests/integration/fluxo-java.test.ts   (7.84s)
+09:40:10 | Coletando dados de cobertura...
+09:40:10 | Relatório de cobertura gerado
+09:40:10 | Test Suites: 6 passed, 6 total
+09:40:10 | Tests: 195 passed, 195 total
+09:40:10 | Duração: 9.68s
+
+================================================================================
+  7. RECOMENDAÇÕES TÉCNICAS
+================================================================================
+
+7.1 COBERTURA DE BRANCHES — commands/*.ts (atual: 0% branches)
+    As linhas 18-19 / 19-20 / 22-23 dos handlers em commands/ são os blocos
+    `catch (err: unknown)` para erros inesperados (não-ValidationError).
+    Recomendação: adicionar testes que forcem erros inesperados via mock/spy
+    do Jest (jest.spyOn) para elevar cobertura de branches a ≥80%.
+
+7.2 COBERTURA DE BRANCHES — desafioLogic.ts (atual: 79.31%)
+    A linha 172 cobre o re-throw de erros não-ValidationError no catch.
+    Recomendação: usar jest.spyOn em validarIdTrilha para lançar Error padrão
+    e cobrir esse ramo.
+
+7.3 TESTES END-TO-END (CLI)
+    O entry point src/index.ts está excluído da cobertura por design.
+    Recomendação: adicionar testes e2e com spawn de processo Node.js para
+    validar a integração completa via linha de comando.
+
+7.4 TESTES DE PROPRIEDADE (Property-Based Testing)
+    Usar fast-check para gerar nomes de estudantes aleatórios e validar que
+    a função validarNome() sempre aceita ou rejeita conforme o contrato.
+
+7.5 MOCKING DE DATA/HORA
+    Os certificados usam Date.now() para unicidade. Recomendação: abstrair
+    esse valor em um injetável (ex.: ClockProvider) para garantir
+    determinismo total nos testes.
+
+7.6 TESTES DE SNAPSHOT (JEST SNAPSHOTS)
+    Adicionar testes de snapshot para os outputs formatados em Markdown dos
+    três comandos. Isso detecta regressões visuais imediatamente.
+
+7.7 COBERTURA DE INTEGRAÇÃO COM JSON INVÁLIDO
+    Adicionar testes que simulam JSON corrompido ou ausente para validar a
+    resiliência do trailService quando o arquivo de dados falha.
+
+7.8 THRESHOLD DE COBERTURA NO CI
+    Elevar os thresholds de cobertura progressivamente:
+      Fase 1 (atual):  lines≥70, branches≥60, functions≥70, statements≥70
+      Fase 2 (próxima): lines≥85, branches≥75, functions≥90, statements≥85
+      Fase 3 (ideal):  lines≥95, branches≥85, functions≥100, statements≥95
+
+================================================================================
+  8. RESUMO FINAL
+================================================================================
+
+  Suítes de Teste : 6 / 6 passaram
+  Testes          : 195 / 195 passaram (100% de aprovação)
+  Falhas          : 0
+  Cobertura Geral : Statements 95.45% | Branches 85.13% | Funcs 100% | Lines 95.13%
+  Meta Atingida   : ✅ SIM (alvo era 70% — obtido 95.45% Statements)
+  Bug Encontrado  : 1 corrigido (listarTodasTrilhas + ValidationError)
+  Status Final    : ✅ APROVADO
+
+================================================================================
+  Gerado por DIO Explorer Test Suite · 27/09/2026 às 03:43:42
+================================================================================

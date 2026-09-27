@@ -1,0 +1,29 @@
+{
+  "name": "dio-explorer-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for DIO Explorer — exposes trilha, desafio and certificado tools via Model Context Protocol",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "node --loader ts-node/esm src/index.ts"
+  },
+  "bin": {
+    "dio-explorer-mcp": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "data"
+  ],
+  "keywords": ["DIO", "MCP", "career", "education", "mcp-server"],
+  "author": "geanclm",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}

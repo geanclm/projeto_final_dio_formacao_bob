@@ -1,0 +1,35 @@
+# =============================================================
+# .bobignore — Regras de exclusao para o assistente Bob
+# Sintaxe identica ao .gitignore (glob patterns)
+# =============================================================
+
+# Dependencias
+# Diretorio gerado pelo npm/yarn/pnpm — nunca deve ser indexado
+node_modules/
+
+# Variaveis de ambiente
+# Arquivos que contem segredos, tokens e configuracoes sensiveis
+.env
+.env.*
+
+# Arquivos temporarios
+# Artefatos descartaveis criados em tempo de execucao
+*.tmp
+
+# Cache do projeto
+# Progresso em cache que muda com frequencia e nao agrega contexto
+data/cache-progress/
+
+# Certificados gerados
+# PDFs/imagens de certificados emitidos — conteudo binario volumoso
+docs/certificados-emitidos/
+
+# Logs
+# Saidas de log que mudam a cada execucao e poluem a leitura de codigo
+*.log
+logs/
+
+# Arquivos de sistema
+# Metadados de SO que nao pertencem ao projeto
+.DS_Store
+Thumbs.db

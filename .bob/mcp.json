@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "dio-explorer": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\geanc\\OneDrive\\Documentos\\GitHub\\projeto_final_dio_formacao_bob\\mcp\\build\\index.js"
+      ]
+    }
+  }
+}
